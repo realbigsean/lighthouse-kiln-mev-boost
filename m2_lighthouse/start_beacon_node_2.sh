@@ -19,4 +19,5 @@ $LIGHTHOUSE \
     --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_1 \
     --subscribe-all-subnets \
     --port $DISCOVERY_PORT_2 \
+    --terminal-total-difficulty-override 0 \
 

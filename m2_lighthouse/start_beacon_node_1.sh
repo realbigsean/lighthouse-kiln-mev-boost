@@ -55,4 +55,4 @@ $LIGHTHOUSE \
     --payload-builder $PAYLOAD_BUILDER \
     --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_2 \
     --port $DISCOVERY_PORT_1 \
-
+    --terminal-total-difficulty-override 0

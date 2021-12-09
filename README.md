@@ -17,6 +17,12 @@ On the first time, be sure to run `./install-geth.sh`
 ./run-geth.sh
 ```
 
+You will be prompted to enter a password for the wallet. You can just press
+ENTER a few times. After being dumped into the console you must run
+```
+miner.start()
+```
+
 ### Terminal 2: MEV boost
 
 Install MEV-boost, the directions exist in the `mev-boost` dir. 
