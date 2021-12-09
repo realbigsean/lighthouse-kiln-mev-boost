@@ -10,11 +10,13 @@ $LIGHTHOUSE \
 	beacon_node \
 	--datadir $BEACON_DIR_2 \
 	--dummy-eth1 \
-	--port 9100 \
 	--http-port 6052 \
 	--http \
 	--http-allow-sync-stalled \
 	--merge \
 	--execution-endpoints $EE_ENDPOINT \
     --payload-builder $PAYLOAD_BUILDER \
+    --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_1 \
+    --subscribe-all-subnets \
+    --port $DISCOVERY_PORT_2 \
 
