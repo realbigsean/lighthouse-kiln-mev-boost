@@ -9,8 +9,8 @@ Lighthouse.
 Instructions:
 
 ```bash
-git clone git@github.com:sigp/lighthouse.git
-git checkout kintsugi
+git clone https://github.com/realbigsean/lighthouse.git
+git checkout mev-lighthouse
 cd lighthouse
 make
 make install-lcli

@@ -1,7 +1,13 @@
+#!/usr/bin/env bash
+
+#
+# Generates a bootnode enr and saves it in $TESTNET/boot_enr.yaml
+# Starts a bootnode from the generated enr.
+#
+
 source ./vars.env
 
 rm -rf $TESTNET_DIR
-rm -rf $BEACON_DIR
 
 EE_PORT=${1:-8545}
 EE_ENDPOINT="http://localhost:${EE_PORT}"
@@ -38,18 +44,28 @@ $LCLI \
 	--deposit-contract-deploy-block 0 \
 	--eth1-block-hash $GENESIS_BLOCK_HASH \
 
-echo "Staring a beacon node using an execution engine at $EE_ENDPOINT..."
+echo "Generating bootnode enr"
 
-$LIGHTHOUSE \
-	--spec $SPEC \
-	--testnet-dir $TESTNET_DIR \
-	--debug-level $DEBUG_LEVEL \
-	beacon_node \
-	--datadir $BEACON_DIR \
-	--dummy-eth1 \
-	--http \
-	--http-allow-sync-stalled \
-	--metrics \
-	--merge \
-	--execution-endpoints $EE_ENDPOINT \
-	--terminal-block-hash-override $GENESIS_BLOCK_HASH
+lcli \
+	generate-bootnode-enr \
+	--ip 127.0.0.1 \
+	--udp-port 8100 \
+	--tcp-port 8100 \
+	--genesis-fork-version 0x02000000 \
+	--output-dir $DATA_DIR/bootnode
+
+bootnode_enr=`cat $DATA_DIR/bootnode/enr.dat`
+echo "- $bootnode_enr" > $TESTNET_DIR/boot_enr.yaml
+
+echo "Generated bootnode enr and written to $TESTNET_DIR/boot_enr.yaml"
+
+DEBUG_LEVEL=${1:-info}
+
+echo "Starting bootnode"
+
+exec lighthouse boot_node \
+    --testnet-dir $TESTNET_DIR \
+    --port 8100 \
+    --listen-address 127.0.0.1 \
+	--disable-packet-filter \
+    --network-dir $DATA_DIR/bootnode \

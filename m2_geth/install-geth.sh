@@ -1,4 +1,4 @@
-git clone git@github.com:MariusVanDerWijden/go-ethereum.git
+git clone https://github.com/MariusVanDerWijden/go-ethereum.git
 cd go-ethereum
-git checkout kintsugi-spec
+git checkout merge-devnet-4
 make
