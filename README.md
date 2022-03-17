@@ -1,4 +1,4 @@
-# MEV Lighthouse Kintsugi 🍵
+# MEV Lighthouse Kiln
 
 ## How To Run
 
