@@ -10,8 +10,8 @@ Instructions:
 
 ```bash
 git clone https://github.com/realbigsean/lighthouse.git
-git checkout mev-lighthouse
 cd lighthouse
+git checkout kiln-mev-boost
 make
 make install-lcli
 ```

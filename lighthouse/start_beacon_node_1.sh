@@ -46,13 +46,16 @@ $LIGHTHOUSE \
 	--debug-level $DEBUG_LEVEL \
 	beacon_node \
 	--datadir $BEACON_DIR_1 \
-	--dummy-eth1 \
+	--eth1 \
 	--http \
 	--http-allow-sync-stalled \
 	--metrics \
 	--merge \
 	--execution-endpoints $EE_ENDPOINT \
-    --payload-builder $PAYLOAD_BUILDER \
-    --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_2 \
-    --port $DISCOVERY_PORT_1 \
-    --terminal-total-difficulty-override 0
+  --payload-builders $PAYLOAD_BUILDER \
+  --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_2 \
+  --port $DISCOVERY_PORT_1 \
+  --terminal-total-difficulty-override 0 \
+  --jwt-secrets="/tmp/jwtsecret" \
+  --suggested-fee-recipient=0x0000000000000000000000000000000000000001
+
