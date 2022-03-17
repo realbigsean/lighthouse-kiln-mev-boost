@@ -15,10 +15,12 @@ $LIGHTHOUSE \
 	--http-allow-sync-stalled \
 	--merge \
 	--execution-endpoints $EE_ENDPOINT \
+	--eth1-endpoints $EE_ENDPOINT \
   --payload-builders $PAYLOAD_BUILDER \
   --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_1 \
   --subscribe-all-subnets \
   --port $DISCOVERY_PORT_2 \
   --terminal-total-difficulty-override 0 \
   --jwt-secrets="/tmp/jwtsecret" \
-  --suggested-fee-recipient=0x0000000000000000000000000000000000000002
+  --suggested-fee-recipient=0x0000000000000000000000000000000000000002 \
+  --safe-slots-to-import-optimistically 0

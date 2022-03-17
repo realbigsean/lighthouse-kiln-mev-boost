@@ -37,6 +37,7 @@ $LCLI \
 	--deposit-contract-address 0x0000000000000000000000000000000000000000 \
 	--deposit-contract-deploy-block 0 \
 	--eth1-block-hash $GENESIS_BLOCK_HASH \
+	--eth1-id $NETWORK_ID \
 
 echo "Staring a beacon node using an execution engine at $EE_ENDPOINT..."
 
@@ -52,10 +53,12 @@ $LIGHTHOUSE \
 	--metrics \
 	--merge \
 	--execution-endpoints $EE_ENDPOINT \
+	--eth1-endpoints $EE_ENDPOINT \
   --payload-builders $PAYLOAD_BUILDER \
   --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_2 \
   --port $DISCOVERY_PORT_1 \
   --terminal-total-difficulty-override 0 \
   --jwt-secrets="/tmp/jwtsecret" \
-  --suggested-fee-recipient=0x0000000000000000000000000000000000000001
+  --suggested-fee-recipient=0x0000000000000000000000000000000000000001 \
+  --safe-slots-to-import-optimistically 0
 

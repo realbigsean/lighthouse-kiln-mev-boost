@@ -21,4 +21,5 @@ $LIGHTHOUSE \
 	--testnet-dir $TESTNET_DIR \
 	--init-slashing-protection \
 	--beacon-nodes http://localhost:5052 \
-	--private-tx-proposals
+	--private-tx-proposals \
+	--suggested-fee-recipient 0x0000000000000000000000000000000000000001
