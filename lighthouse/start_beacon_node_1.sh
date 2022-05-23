@@ -1,10 +1,7 @@
-source ./vars.env
+source vars.env
 
 rm -rf $BEACON_DIR_1
 rm -rf $TESTNET_DIR
-
-EE_PORT=${1:-8545}
-EE_ENDPOINT="http://localhost:${EE_PORT}"
 
 echo "Retrieving genesis block from geth..."
 
@@ -14,7 +11,7 @@ GENESIS_BLOCK_HASH=$(curl \
 	-H "Content-Type: application/json" \
 	--data \
 	'{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["earliest",false],"id":1}' \
-	$EE_ENDPOINT \
+	$ETH1_ENDPOINT \
 	| jq '.result.hash' \
 	| tr -d '"')
 
@@ -53,8 +50,8 @@ $LIGHTHOUSE \
 	--metrics \
 	--merge \
 	--execution-endpoints $EE_ENDPOINT \
-	--eth1-endpoints $EE_ENDPOINT \
-  --payload-builders $PAYLOAD_BUILDER \
+	--eth1-endpoints $ETH1_ENDPOINT \
+  --builder $PAYLOAD_BUILDER \
   --libp2p-addresses /ip4/127.0.0.1/tcp/$DISCOVERY_PORT_2 \
   --port $DISCOVERY_PORT_1 \
   --terminal-total-difficulty-override 0 \
